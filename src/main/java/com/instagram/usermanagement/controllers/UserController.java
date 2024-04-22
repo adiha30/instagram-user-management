@@ -24,9 +24,4 @@ public class UserController {
 
         return ResponseEntity.ok().build();
     }
-
-    @GetMapping("/{username}")
-    public ResponseEntity<User> getUser(@PathVariable String username) {
-        return ResponseEntity.ok().body(userService.findByUsername(username));
-    }
 }

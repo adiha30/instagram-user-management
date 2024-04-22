@@ -8,10 +8,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 @Configuration
 public class WebSecurityConfig {
+    private final String[] permittedPaths = {"/users/register"};
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -23,7 +22,7 @@ public class WebSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/users/register").permitAll()
+                        auth.requestMatchers(permittedPaths).permitAll()
                                 .anyRequest().authenticated()
                 );
 
