@@ -2,6 +2,7 @@ package com.instagram.usermanagement.controllers;
 
 import com.instagram.usermanagement.models.User;
 import com.instagram.usermanagement.services.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<Void> registerUser(@RequestBody User user){
+    public ResponseEntity<Void> registerUser(@RequestBody @Valid User user){
         userService.saveUser(user);
 
         return ResponseEntity.ok().build();
